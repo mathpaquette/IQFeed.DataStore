@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Reader\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="iqfeed.csharpapiclient" Version="2.0.2.340" />
+    <PackageReference Include="SharpZipLib" Version="1.2.0" />
+  </ItemGroup>
+
+</Project>
