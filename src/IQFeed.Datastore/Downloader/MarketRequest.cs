@@ -1,16 +1,21 @@
-﻿using IQFeed.CSharpApiClient.Lookup.Symbol.MarketSymbols;
+﻿using System;
+using IQFeed.CSharpApiClient.Lookup.Symbol.MarketSymbols;
 
 namespace IQFeed.Datastore.Downloader
 {
     public class MarketRequest
     {
         public MarketSymbol MarketSymbol { get; }
-        public Resolution Resolution { get; }
+        public DataType DataType { get; }
+        public DateTime StartDate { get; }
+        public DateTime EndDate { get; }
 
-        public MarketRequest(MarketSymbol marketSymbol, Resolution resolution)
+        public MarketRequest(MarketSymbol marketSymbol, DataType dataType, DateTime startDate, DateTime endDate)
         {
             MarketSymbol = marketSymbol;
-            Resolution = resolution;
+            DataType = dataType;
+            StartDate = startDate;
+            EndDate = endDate;
         }
     }
 }

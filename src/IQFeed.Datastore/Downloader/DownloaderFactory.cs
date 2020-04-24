@@ -1,7 +1,7 @@
-﻿using System.Configuration;
+﻿using System;
 using IQFeed.CSharpApiClient;
 using IQFeed.CSharpApiClient.Lookup;
-using IQFeed.Datastore.Writer;
+using IQFeed.CSharpApiClient.Streaming.Level1;
 
 namespace IQFeed.Datastore.Downloader
 {
@@ -10,12 +10,13 @@ namespace IQFeed.Datastore.Downloader
         public static Downloader CreateNew(string dataDirectory, int numberOfClients)
         {
             IQFeedLauncher.Start();
-            var lookupClient = LookupClientFactory.CreateNew(numberOfClients);
+            var lookupClient = LookupClientFactory.CreateNew("localhost", IQFeedDefault.LookupPort, numberOfClients, TimeSpan.FromMinutes(20));
             lookupClient.Connect();
-            
-            var fileWriter = new FileWriter(dataDirectory);
 
-            return new Downloader(fileWriter, lookupClient, numberOfClients);
+            var level1Client = Level1ClientFactory.CreateNew();
+            level1Client.Connect();
+
+            return new Downloader(dataDirectory, lookupClient, level1Client, numberOfClients);
         }
     }
 }
