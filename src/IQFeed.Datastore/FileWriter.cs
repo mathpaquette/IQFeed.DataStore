@@ -143,7 +143,7 @@ namespace IQFeed.DataStore
             if (File.Exists(filePath))
             {
                 File.Delete(filePath);
-                Log.Information("FileWriter.Write(): Existing deleted: " + filePath);
+                Log.Information($"FileWriter.Write(): Existing deleted: {filePath}");
             }
 
             // Create the directory if it doesnt exist
@@ -155,7 +155,7 @@ namespace IQFeed.DataStore
             // Move temp file to the final destination with the appropriate name
             File.Move(tempFilePath, filePath);
 
-            Log.Information("FileWriter.Write(): Created: " + filePath);
+            Log.Information($"FileWriter.Write(): Created: {filePath}");
         }
     }
 }

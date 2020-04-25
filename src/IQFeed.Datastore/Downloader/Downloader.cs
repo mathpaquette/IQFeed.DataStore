@@ -53,11 +53,13 @@ namespace IQFeed.DataStore.Downloader
             
             if (marketSymbolDirectory != null && !Directory.Exists(marketSymbolDirectory))
             {
+                Log.Information($"Downloader.GetAllMarketSymbols(): Create directory {marketSymbolDirectory}");
                 Directory.CreateDirectory(marketSymbolDirectory);
             }
 
             if (!File.Exists(marketSymbolPath))
             {
+                Log.Information($"Downloader.GetAllMarketSymbols(): Downloading Market Symbols to {marketSymbolPath}");
                 using (var client = new WebClient())
                 {
                     client.DownloadFile("http://www.dtniq.com/product/mktsymbols_v2.zip", marketSymbolPath);
@@ -74,17 +76,16 @@ namespace IQFeed.DataStore.Downloader
                 try
                 {
                     FileWriter fileWriter;
+                    Log.Information($"Downloader.ProcessRequest(): Downloading {request.DataType} for {request.MarketSymbol.Symbol} from {request.StartDate} to {request.EndDate}");
 
                     switch (request.DataType)
                     {
                         case DataType.Fundamental:
-                            Log.Information($"Downloading {request.DataType} for {request.MarketSymbol.Symbol}");
                             var fundamentalMessage = await _level1Client.GetFundamentalSnapshotAsync(request.MarketSymbol.Symbol);
                             var fundamentalData = new FundamentalData(DateTime.Now.Date, fundamentalMessage.ToCsv());
                             fileWriter = new FileWriter(_dataDirectory, request.MarketSymbol, DataType.Fundamental);
                             fileWriter.Write(new List<HistoricalData>() { fundamentalData });
                             break;
-
                         case DataType.Tick:
                             var filename = await GetMarketFilename(request);
                             fileWriter = new FileWriter(_dataDirectory, request.MarketSymbol, request.DataType);
@@ -105,8 +106,6 @@ namespace IQFeed.DataStore.Downloader
 
         private Task<string> GetMarketFilename(MarketRequest request)
         {
-            Log.Information($"Downloading {request.DataType} for {request.MarketSymbol.Symbol} from {request.StartDate} to {request.EndDate}");
-
             switch (request.DataType)
             {
                 case DataType.Tick:
