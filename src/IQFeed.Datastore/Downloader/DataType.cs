@@ -1,4 +1,4 @@
-﻿namespace IQFeed.Datastore.Downloader
+﻿namespace IQFeed.DataStore.Downloader
 {
     public enum DataType
     {

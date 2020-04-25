@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace IQFeed.Datastore.Downloader
+namespace IQFeed.DataStore.Downloader
 {
     public class MarketSymbolFilterService
     {

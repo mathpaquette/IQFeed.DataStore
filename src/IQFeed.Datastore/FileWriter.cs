@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using IQFeed.CSharpApiClient.Lookup.Symbol.MarketSymbols;
-using IQFeed.Datastore.Downloader;
-using Serilog;
 using Ionic.Zip;
+using IQFeed.CSharpApiClient.Lookup.Symbol.MarketSymbols;
+using IQFeed.DataStore.Downloader;
+using Serilog;
 
-namespace IQFeed.Datastore
+namespace IQFeed.DataStore
 {
     /**
      * Disclaimer: This code has been inspired and adapted from QuantConnect.Toolbox

@@ -7,7 +7,7 @@ using ZipEntry = ICSharpCode.SharpZipLib.Zip.ZipEntry;
 using ZipFile = Ionic.Zip.ZipFile;
 using ZipOutputStream = ICSharpCode.SharpZipLib.Zip.ZipOutputStream;
 
-namespace IQFeed.Datastore
+namespace IQFeed.DataStore
 {
     /**
      * Disclaimer: This code has been inspired and adapted from QuantConnect.Toolbox

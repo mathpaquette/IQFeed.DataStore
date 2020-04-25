@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "IQFeed.Datastore.Downloader": {
+    "IQFeed.DataStore.Downloader": {
       "commandName": "Project",
       "commandLineArgs": "--tickers=AAPL --data=Tick --from-date=\"2020-03-27 04:00:00\" --to-date=\"2020-04-02 20:00:00\" --clients=4"
     }

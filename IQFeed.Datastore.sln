@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IQFeed.Datastore", "src\IQFeed.Datastore\IQFeed.Datastore.csproj", "{5B3EF2DB-B929-4045-8715-524E05E4790E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IQFeed.DataStore", "src\IQFeed.DataStore\IQFeed.DataStore.csproj", "{5B3EF2DB-B929-4045-8715-524E05E4790E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IQFeed.Datastore.Downloader", "src\IQFeed.Datastore.Downloader\IQFeed.Datastore.Downloader.csproj", "{58BE5AED-EA2B-4FCE-9C6A-49239826512C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IQFeed.DataStore.Downloader", "src\IQFeed.DataStore.Downloader\IQFeed.DataStore.Downloader.csproj", "{58BE5AED-EA2B-4FCE-9C6A-49239826512C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IQFeed.Datastore.Reader", "src\IQFeed.Datastore.Reader\IQFeed.Datastore.Reader.csproj", "{A788F81F-FA33-4B58-8485-BE5B9B622E63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IQFeed.DataStore.Reader", "src\IQFeed.DataStore.Reader\IQFeed.DataStore.Reader.csproj", "{A788F81F-FA33-4B58-8485-BE5B9B622E63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

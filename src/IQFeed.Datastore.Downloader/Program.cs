@@ -4,7 +4,7 @@ using System.Linq;
 using CommandLine;
 using Serilog;
 
-namespace IQFeed.Datastore.Downloader
+namespace IQFeed.DataStore.Downloader
 {
     class Program
     {

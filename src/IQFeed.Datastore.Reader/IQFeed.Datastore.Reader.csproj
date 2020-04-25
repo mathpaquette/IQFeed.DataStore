@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IQFeed.Datastore\IQFeed.Datastore.csproj" />
+    <ProjectReference Include="..\IQFeed.DataStore\IQFeed.DataStore.csproj" />
   </ItemGroup>
 
 </Project>

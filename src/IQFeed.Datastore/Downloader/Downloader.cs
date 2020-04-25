@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using IQFeed.CSharpApiClient.Lookup;
 using IQFeed.CSharpApiClient.Lookup.Common;
@@ -12,7 +13,7 @@ using IQFeed.CSharpApiClient.Lookup.Symbol.MarketSymbols;
 using IQFeed.CSharpApiClient.Streaming.Level1;
 using Serilog;
 
-namespace IQFeed.Datastore.Downloader
+namespace IQFeed.DataStore.Downloader
 {
     public class Downloader
     {
@@ -47,7 +48,23 @@ namespace IQFeed.Datastore.Downloader
 
         public IEnumerable<MarketSymbol> GetAllMarketSymbols()
         {
-            return _lookupClient.Symbol.GetAllMarketSymbols();
+            var marketSymbolPath = Path.Combine(_dataDirectory, "symbol", $"{DateTime.Now.ToString(DataStore.DateFormat)}_mktsymbols_v2.zip");
+            var marketSymbolDirectory = Path.GetDirectoryName(marketSymbolPath);
+            
+            if (marketSymbolDirectory != null && !Directory.Exists(marketSymbolDirectory))
+            {
+                Directory.CreateDirectory(marketSymbolDirectory);
+            }
+
+            if (!File.Exists(marketSymbolPath))
+            {
+                using (var client = new WebClient())
+                {
+                    client.DownloadFile("http://www.dtniq.com/product/mktsymbols_v2.zip", marketSymbolPath);
+                }
+            }
+
+            return MarketSymbolReader.GetMarketSymbols(marketSymbolPath);
         }
 
         private async Task ProcessRequest(ConcurrentQueue<MarketRequest> requests)

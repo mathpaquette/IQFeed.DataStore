@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace IQFeed.Datastore
+namespace IQFeed.DataStore
 {
     public class HistoricalData
     {

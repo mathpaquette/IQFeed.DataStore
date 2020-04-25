@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using IQFeed.CSharpApiClient.Lookup;
-using IQFeed.Datastore.Downloader;
+using IQFeed.DataStore.Downloader;
 
-namespace IQFeed.Datastore.Reader
+namespace IQFeed.DataStore.Reader
 {
     class Program
     {

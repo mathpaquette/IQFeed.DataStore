@@ -3,7 +3,7 @@ using IQFeed.CSharpApiClient;
 using IQFeed.CSharpApiClient.Lookup;
 using IQFeed.CSharpApiClient.Streaming.Level1;
 
-namespace IQFeed.Datastore.Downloader
+namespace IQFeed.DataStore.Downloader
 {
     public class DownloaderFactory
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using IQFeed.CSharpApiClient.Lookup.Symbol.MarketSymbols;
 
-namespace IQFeed.Datastore.Downloader
+namespace IQFeed.DataStore.Downloader
 {
     public class FilterDesc
     {

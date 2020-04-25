@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Ionic.Zip;
 using IQFeed.CSharpApiClient.Lookup.Historical.Messages;
 using IQFeed.CSharpApiClient.Lookup.Symbol.MarketSymbols;
-using IQFeed.Datastore.Downloader;
+using IQFeed.DataStore.Downloader;
 
-namespace IQFeed.Datastore
+namespace IQFeed.DataStore
 {
     /**
      * Disclaimer: This code has been inspired and adapted from QuantConnect.Toolbox
