@@ -87,9 +87,10 @@ namespace IQFeed.DataStore.Downloader
                             fileWriter.Write(new List<HistoricalData>() { fundamentalData });
                             break;
                         case DataType.Tick:
+                        case DataType.Daily:
                             var filename = await GetMarketFilename(request);
                             fileWriter = new FileWriter(_dataDirectory, request.MarketSymbol, request.DataType);
-                            var historicalData = LookupMessageFileParser.ParseFromFile(line => new HistoricalData(TickMessage.Parse(line).Timestamp, line), filename);
+                            var historicalData = GetData(request, filename);
                             fileWriter.Write(historicalData);
                             File.Delete(filename);
                             break;
@@ -110,9 +111,23 @@ namespace IQFeed.DataStore.Downloader
             {
                 case DataType.Tick:
                     return _lookupClient.Historical.File.GetHistoryTickTimeframeAsync(request.MarketSymbol.Symbol, request.StartDate, request.EndDate, dataDirection: DataDirection.Oldest);
+                case DataType.Daily:
+                    return _lookupClient.Historical.File.GetHistoryDailyTimeframeAsync(request.MarketSymbol.Symbol, request.StartDate, request.EndDate, dataDirection: DataDirection.Oldest);
                 default:
-                    return null;
-                    break;
+                    throw new NotSupportedException();
+            }
+        }
+
+        private IEnumerable<HistoricalData> GetData(MarketRequest request, string filename)
+        {
+            switch (request.DataType)
+            {
+                case DataType.Tick:
+                    return LookupMessageFileParser.ParseFromFile(line => new HistoricalData(TickMessage.Parse(line).Timestamp, line), filename);
+                case DataType.Daily:
+                    return LookupMessageFileParser.ParseFromFile(line => new HistoricalData(DailyWeeklyMonthlyMessage.Parse(line).Timestamp, line), filename);
+                default:
+                    throw new NotSupportedException();
             }
         }
     }

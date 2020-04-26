@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Ionic.Zip;
+using IQFeed.CSharpApiClient.Lookup.Historical.Messages;
 using IQFeed.CSharpApiClient.Lookup.Symbol.MarketSymbols;
 using IQFeed.DataStore.Downloader;
 using Serilog;
@@ -31,12 +32,26 @@ namespace IQFeed.DataStore
         {
             switch (_dataType)
             {
+                case DataType.Daily:
                 case DataType.Fundamental:
-                    WriteFundamentalOrDaily(historicalData, FundamentalData.Parse);
+                    WriteFundamentalOrDaily(historicalData, GetParseFunc(_dataType));
                     break;
                 case DataType.Tick:
                     WriteTick(historicalData);
                     break;
+            }
+        }
+
+        private Func<string, HistoricalData> GetParseFunc(DataType dataType)
+        {
+            switch (dataType)
+            {
+                case DataType.Fundamental:
+                    return FundamentalData.Parse;
+                case DataType.Daily:
+                    return line => new HistoricalData(DailyWeeklyMonthlyMessage.Parse(line).Timestamp, line);;
+                default:
+                    throw new NotSupportedException();
             }
         }
 
