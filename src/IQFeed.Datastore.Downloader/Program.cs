@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using CommandLine;
 using Serilog;
+using Serilog.Events;
 
 namespace IQFeed.DataStore.Downloader
 {
@@ -17,11 +18,14 @@ namespace IQFeed.DataStore.Downloader
             [Option('g', "group", HelpText = "Ticker group.", Group = "TICKER")]
             public string Group { get; set; }
 
-            [Option('s', "from-date", Required = true, HelpText = @"Format: ""YYYY-MM-DD HH:MM:SS""")]
+            [Option('s', "from-date", SetName = "DateRange", Required = true, HelpText = @"Format: ""YYYY-MM-DD HH:MM:SS""")]
             public DateTime FromDate { get; set; }
 
-            [Option('e', "to-date", Required = true, HelpText = @"Format: ""YYYY-MM-DD HH:MM:SS""")]
+            [Option('e', "to-date", SetName = "DateRange", Required = true, HelpText = @"Format: ""YYYY-MM-DD HH:MM:SS""")]
             public DateTime ToDate { get; set; }
+
+            [Option('c', "today", SetName = "DateNow", Required = true, HelpText = "Download data for current day.")]
+            public bool Today { get; set; }
 
             [Option('d', "data", Default = new[] { DataType.Tick, DataType.Second, DataType.Minute, DataType.Hour, DataType.Daily, DataType.Weekly, DataType.Fundamental }, Separator = ',', HelpText = "Data types comma-separated.")]
             public IEnumerable<DataType> DataTypes { get; set; }
@@ -59,8 +63,8 @@ namespace IQFeed.DataStore.Downloader
             var numberOfClients = options.Clients;
             var path = options.Path;
             var dataTypes = options.DataTypes;
-            var startDate = options.FromDate;
-            var endDate = options.ToDate;
+            var startDate = options.Today ? DateTime.Now.Date : options.FromDate;
+            var endDate = options.Today ? DateTime.Now.Date.AddDays(1).AddSeconds(-1) : options.ToDate;
             var downloader = DownloaderFactory.CreateNew(path, numberOfClients);
 
             var symbols = filterDesc != null
@@ -78,12 +82,16 @@ namespace IQFeed.DataStore.Downloader
 
         private static void CreateLogger(string path)
         {
+            var logFile = Path.Combine(path, "logs/downloader/log.txt");
+            var errorFile = Path.Combine(path, "logs/downloader/error.txt");
+
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Information()
                 .WriteTo.Console()
-                .WriteTo.File(Path.Combine(path, "logs/downloader/log.txt"),
-                    rollingInterval: RollingInterval.Day,
-                    rollOnFileSizeLimit: true)
+                .WriteTo.Logger(l => l.Filter.ByExcluding(e => e.Level == LogEventLevel.Error)
+                    .WriteTo.File(logFile, rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true))
+                .WriteTo.Logger(l => l.Filter.ByIncludingOnly(e => e.Level == LogEventLevel.Error)
+                    .WriteTo.File(errorFile, rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true))
                 .CreateLogger();
         }
     }
