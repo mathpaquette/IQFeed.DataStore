@@ -50,7 +50,7 @@ namespace IQFeed.DataStore
                 case DataType.Weekly:
                     return $"{formattedSymbol}.zip";
                 default:
-                    return $"{date:yyyyMMdd}_{formattedSymbol}.zip"; ;
+                    return $"{date:yyyyMMdd}.zip"; ;
             }
         }
     }
