@@ -5,12 +5,12 @@ namespace IQFeed.DataStore
     public class HistoricalData
     {
         public DateTime Timestamp { get; }
-        public string Value { get; }
+        public string Line { get; }
 
-        public HistoricalData(DateTime timestamp, string value)
+        public HistoricalData(DateTime timestamp, string line)
         {
             Timestamp = timestamp;
-            Value = value;
+            Line = line;
         }
     }
 }

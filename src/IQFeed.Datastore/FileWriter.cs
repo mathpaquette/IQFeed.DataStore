@@ -77,7 +77,7 @@ namespace IQFeed.DataStore
                 lastTime = historical.Timestamp;
 
                 // Build the line and append it to the file
-                sb.Append(historical.Value + Environment.NewLine);
+                sb.Append(historical.Line + Environment.NewLine);
             }
 
             // Write the last file
@@ -97,13 +97,13 @@ namespace IQFeed.DataStore
             var outputFile = DataStore.GetZipOutputFileName(lastTime, _marketSymbol, _dataType, _dataDirectory);
 
             // Load new data rows into a SortedDictionary for easy merge/update
-            var newRows = new SortedDictionary<DateTime, string>(source.ToDictionary(x => x.Timestamp, x => x.Value));
+            var newRows = new SortedDictionary<DateTime, string>(source.ToDictionary(x => x.Timestamp, x => x.Line));
             SortedDictionary<DateTime, string> rows;
 
             if (File.Exists(outputFile))
             {
                 // If file exists, we load existing data and perform merge
-                rows = new SortedDictionary<DateTime, string>(LoadFundamentalOrDaily(outputFile, parseFunc).ToDictionary(x => x.Timestamp, x => x.Value));
+                rows = new SortedDictionary<DateTime, string>(LoadFundamentalOrDaily(outputFile, parseFunc).ToDictionary(x => x.Timestamp, x => x.Line));
                 foreach (var kvp in newRows)
                 {
                     rows[kvp.Key] = kvp.Value;
