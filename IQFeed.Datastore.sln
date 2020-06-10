@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IQFeed.DataStore.Downloader
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IQFeed.DataStore.Reader", "src\IQFeed.DataStore.Reader\IQFeed.DataStore.Reader.csproj", "{A788F81F-FA33-4B58-8485-BE5B9B622E63}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IQFeed.DataStore.Tests", "src\IQFeed.DataStore.Tests\IQFeed.DataStore.Tests.csproj", "{78139215-C65C-40EF-8237-83668D5DCE2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,18 @@ Global
 		{A788F81F-FA33-4B58-8485-BE5B9B622E63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A788F81F-FA33-4B58-8485-BE5B9B622E63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A788F81F-FA33-4B58-8485-BE5B9B622E63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78139215-C65C-40EF-8237-83668D5DCE2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78139215-C65C-40EF-8237-83668D5DCE2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78139215-C65C-40EF-8237-83668D5DCE2A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{78139215-C65C-40EF-8237-83668D5DCE2A}.Debug|x64.Build.0 = Debug|Any CPU
+		{78139215-C65C-40EF-8237-83668D5DCE2A}.Mono|Any CPU.ActiveCfg = Debug|Any CPU
+		{78139215-C65C-40EF-8237-83668D5DCE2A}.Mono|Any CPU.Build.0 = Debug|Any CPU
+		{78139215-C65C-40EF-8237-83668D5DCE2A}.Mono|x64.ActiveCfg = Debug|Any CPU
+		{78139215-C65C-40EF-8237-83668D5DCE2A}.Mono|x64.Build.0 = Debug|Any CPU
+		{78139215-C65C-40EF-8237-83668D5DCE2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78139215-C65C-40EF-8237-83668D5DCE2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78139215-C65C-40EF-8237-83668D5DCE2A}.Release|x64.ActiveCfg = Release|Any CPU
+		{78139215-C65C-40EF-8237-83668D5DCE2A}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

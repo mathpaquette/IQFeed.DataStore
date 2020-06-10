@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="DotNetZip" Version="1.13.7" />
-    <PackageReference Include="IQFeed.CSharpApiClient" Version="2.1.0.356" />
+    <PackageReference Include="IQFeed.CSharpApiClient" Version="2.1.0.385" />
     <PackageReference Include="Serilog" Version="2.9.0" />
     <PackageReference Include="SharpZipLib" Version="1.2.0" />
   </ItemGroup>

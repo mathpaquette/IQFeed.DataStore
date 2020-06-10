@@ -17,12 +17,12 @@ namespace IQFeed.DataStore.Downloader
 {
     public class Downloader
     {
-        private readonly LookupClient<double> _lookupClient;
-        private readonly Level1Client<double> _level1Client;
+        private readonly LookupClient _lookupClient;
+        private readonly Level1Client _level1Client;
         private readonly Task[] _tasks;
         private readonly string _dataDirectory;
 
-        public Downloader(string dataDirectory, LookupClient<double> lookupClient, Level1Client<double> level1Client, int numberOfClients)
+        public Downloader(string dataDirectory, LookupClient lookupClient, Level1Client level1Client, int numberOfClients)
         {
             _level1Client = level1Client;
             _dataDirectory = dataDirectory;
